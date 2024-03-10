@@ -1,0 +1,15 @@
+.center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  th, td {
+      padding: 15px;
+      text-align: center;
+  }
+  table, th, td {
+    border: 2px solid;
+  }
+  
+  body {
+      background-image: linear-gradient( 109.6deg, rgba(156,252,248,1) 11.2%, rgba(110,123,251,1) 91.1% );
+    }  
