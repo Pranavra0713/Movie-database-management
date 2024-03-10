@@ -1,0 +1,31 @@
+CREATE VIEW Recommended AS 
+    SELECT r.movie_title, a.name, r.rating 
+    FROM movie m 
+    JOIN cast c ON c.movie_id = m.movie_id 
+    JOIN actor a ON a.actor_id = c.actor_id 
+    JOIN rating r ON r.movie_id = m.movie_id 
+    WHERE m.m_language = 'Kannada' and r.rating=(select max(rating)
+								from rating));
+
+
+CREATE VIEW Recommended AS
+SELECT r.movie_title, a.name, r.rating
+FROM movie m
+JOIN cast c ON c.movie_id = m.movie_id
+JOIN actor a ON a.actor_id = c.actor_id
+JOIN rating r ON r.movie_id = m.movie_id
+WHERE m.m_language = 'Kannada' and r.rating=(SELECT max(rating)
+FROM rating);
+
+CREATE TRIGGER `backup` AFTER INSERT ON `admin_details`
+ FOR EACH ROW begin
+insert into admin_details_backup value(new.admin_name,new.a_id,new.a_password);
+end
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectAvailNo`()
+BEGIN
+  select available_on, count(*)as count from avail group by(available_on);
+END$$
+DELIMITER ;
